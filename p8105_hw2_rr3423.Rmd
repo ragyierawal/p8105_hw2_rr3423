@@ -1,0 +1,6 @@
+---
+title: "p8105_hw2_rr3423"
+author: "Ragyie Rawal"
+date: "10/6/2021"
+output: github_document
+---
