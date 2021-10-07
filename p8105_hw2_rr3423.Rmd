@@ -4,3 +4,18 @@ author: "Ragyie Rawal"
 date: "10/6/2021"
 output: github_document
 ---
+
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+
+## PROBLEM 1 
+
+```{r read_data}
+# using readxl function to read excel file data
+mr_trash_wheel = readxl::read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx")
+
+
+```
+
