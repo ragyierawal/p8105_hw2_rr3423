@@ -21,7 +21,8 @@ mr_trash_wheel_df =
              sheet = "Mr. Trash Wheel",
              range = "A2:N408") %>% 
   janitor::clean_names() %>% 
-  drop_na() 
+  filter(!str_detect(month, 'Total')) %>% 
+  mutate(sports_balls = round(sports_balls))
 
 view(mr_trash_wheel_df)
 ```
