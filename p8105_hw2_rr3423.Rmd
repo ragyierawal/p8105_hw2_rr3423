@@ -5,8 +5,10 @@ date: "10/6/2021"
 output: github_document
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 library(tidyverse)
+library(readxl)
+library(lubridate)
 ```
 
 
@@ -14,8 +16,10 @@ library(tidyverse)
 
 ```{r read_data}
 # using readxl function to read excel file data
-mr_trash_wheel = readxl::read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx")
-
+mr_trash_wheel = 
+  readxl::read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx") %>% 
+  janitor::clean_names()
+  
 
 ```
 
