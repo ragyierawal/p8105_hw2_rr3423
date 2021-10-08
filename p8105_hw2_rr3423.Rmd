@@ -34,9 +34,10 @@ mr_trash_wheel_df =
 precipitation_2018_df = 
   read_excel("data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
              sheet = "2018 Precipitation",
-             range = "A2:B14") %>% 
+             range = "A2:B15") %>% 
   janitor::clean_names() %>% 
-  mutate(year = "2018")
+  mutate(year = "2018") %>% 
+  drop_na()
 ```
 
 ### Precipitation Data 2019:
@@ -58,7 +59,8 @@ precipitation_2019_df =
 # combining precipitation datasets and converting month to a character variable
 precipitation_df =
   bind_rows(precipitation_2018_df, precipitation_2019_df) %>% 
-  mutate(month = month.name[month])
+  mutate(month = month.name[month]) %>% 
+  relocate(month, year, total)
 ```
 
 ### Data summary 
