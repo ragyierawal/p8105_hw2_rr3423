@@ -126,6 +126,13 @@ snp_df =
   select(year, month, close, everything())
 ```
 
+### Tidying data in unemployment.csv
+
+```{r}
+unemployment_df = 
+  read_csv("data/fivethirtyeight_datasets/unemployment.csv")
+```
+
 
 
 
