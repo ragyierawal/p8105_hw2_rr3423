@@ -187,9 +187,18 @@ The unemployment dataset contains data regarding the percentage of unemployment 
 
 ## PROBLEM 3 
 
-```{r}
+### Loading and tidying popular baby names data 
+
+```{r formatting_variables}
 baby_names_df = 
-  read_csv("data/Popular_Baby_Names.csv")
+  read_csv("data/Popular_Baby_Names.csv") %>% 
+  janitor::clean_names() %>% 
+  mutate(gender = str_to_sentence(gender),
+         ethnicity = recode(ethnicity,"ASIAN AND PACI" = "ASIAN AND PACIFIC", 
+                            "WHITE NON HISP" = "WHITE NON HISPANIC", 
+                            "BLACK NON HISP" = "BLACK NON HISPANIC"),
+         ethnicity = str_to_sentence(ethnicity),
+         childs_first_name = str_to_sentence(childs_first_name))
 ```
 
 
