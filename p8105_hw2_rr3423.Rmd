@@ -130,7 +130,8 @@ snp_df =
 
 ```{r}
 unemployment_df = 
-  read_csv("data/fivethirtyeight_datasets/unemployment.csv")
+  read_csv("data/fivethirtyeight_datasets/unemployment.csv") %>% 
+  janitor::clean_names()
 ```
 
 
