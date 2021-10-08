@@ -69,27 +69,31 @@ precipitation_df =
 names_p18 = precipitation_2018_df %>% names()
 precipitation_18_total = precipitation_2018_df %>% summarise(sum(total))
 p18_median = precipitation_2018_df %>% summarise(median(total))
+p18_mean = precipitation_2018_df %>% summarise(mean(total))
 p18_row = precipitation_2018_df %>% nrow()
 p18_col = precipitation_2018_df %>% ncol()
 
 names_p19 = precipitation_2019_df %>% names()
 precipitation_19_total = precipitation_2019_df %>% summarise(sum(total))
 p19_median = precipitation_2019_df %>% summarise(median(total))
+p19_mean = precipitation_2019_df %>% summarise(mean(total))
 p19_row =  precipitation_2019_df %>% nrow()
 p19_col = precipitation_2019_df %>% ncol()
+
+names_trash = mr_trash_wheel_df %>% names()
+trash_rows = mr_trash_wheel_df %>% nrow()
+trash_columns = mr_trash_wheel_df %>% ncol()
+
+median_sports_balls = mr_trash_wheel_df %>% 
+  filter(year == 2019) %>% 
+  summarise(median(sports_balls))
 ```
 
-* The variable names in the precipitation 2018 dataset are: `r names_p18`. 
-* The total precipitation in 2018 was `r precipitation_18_total`.
-* The median precipitation in 2018 was `r precipitation_19_total`.
-* The number of rows in the precipitation 2018 dataset is `r p18_row`. 
-* The number of columns in the precipitation 2018 dataset `r p18_col`. 
+The **variable names** in the precipitation 2018 data are **`r names_p18`**. The **total precipitation** in 2018 was **`r precipitation_18_total`**. The **median** precipitation in 2018 was **`r p18_median`**. The **mean** precipitation in 2018 was **`r p18_mean`**. The number of **rows** in the precipitation 2018 data is **`r p18_row`**. The number of **columns** in the precipitation 2018 data is **`r p18_col`**. 
 
-* The variable names in the precipitation 2019 dataset are: `r names_p19`. 
-* The total precipitation in 2019 was `r precipitation_19_total`. 
-* The median precipitation in 2019 was  `r p19_median`.
-* The number of rows in the precipitation 2019 dataset is `r p19_row`. 
-* The number of columns in the precipitation 2019 dataset is `r p19_col`. 
+The **variable names** in the precipitation 2019 data are **`r names_p19`**. The **total precipitation** in 2019 was **`r precipitation_19_total`**. The **median** precipitation in 2019 was **`r p19_median`**. The **mean** precipitation in 2019 was **`r p19_mean`**. The number of **rows** in the precipitation 2019 data is **`r p19_row`**. The number of **columns** in the precipitation 2019 data is **`r p19_col`**.
+
+The **variable names** in the Mr. Trash Wheel data are **`r names_trash`**. The number of **rows** in the Mr. Trash Wheel data is **`r trash_rows`**. The number of **columns** in the Mr. Trash Wheel data is **`r trash_columns`**. The **median number of sports balls** in a dumpster in 2019 is **`r median_sports_balls`**. 
 
 
 
