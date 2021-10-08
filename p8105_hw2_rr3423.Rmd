@@ -14,12 +14,12 @@ library(lubridate)
 
 ## PROBLEM 1 
 
-Mr. Trash Wheel:
+### Mr. Trash Wheel:
 
-```{r mr_trash_wheel, message = FALSE, warning = FALSE}
+```{r mr_trash_wheel}
 # importing and cleaning excel file data for Mr. Trash Wheel dataset 
 mr_trash_wheel_df = 
-  read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+  read_excel("data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
              sheet = "Mr. Trash Wheel",
              range = "A2:N408") %>% 
   janitor::clean_names() %>% 
@@ -27,37 +27,68 @@ mr_trash_wheel_df =
   mutate(sports_balls = round(sports_balls))
 ```
 
-Precipitation Data 2018: 
+### Precipitation Data 2018: 
 
-```{r precipitation_2018, message = FALSE, warning = FALSE}
-# reading and cleaning precipitation data for 2018 
+```{r precipitation_2018}
+# reading and cleaning the excel precipitation data for 2018 
 precipitation_2018_df = 
-  read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+  read_excel("data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
              sheet = "2018 Precipitation",
              range = "A2:B14") %>% 
   janitor::clean_names() %>% 
   mutate(year = "2018")
 ```
 
-Precipitation Data 2019:
+### Precipitation Data 2019:
 
-```{r precipitation_2019, message = FALSE, warning = FALSE}
-# reading and cleaning precipitation data for 2019 
+```{r precipitation_2019}
+# reading and cleaning the excel precipitation data for 2019 
 precipitation_2019_df = 
-  read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+  read_excel("data/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
              sheet = "2019 Precipitation",
-             range = "A2:B8") %>% 
+             range = "A2:B15") %>% 
   janitor::clean_names() %>% 
-  mutate(year = "2019")
+  mutate(year = "2019") %>% 
+  drop_na()
 ```
 
-Combining precipitation datasets:
+### Combining precipitation datasets:
 
-```{r combine_precipitation, message = FALSE, warning = FALSE}
+```{r combine_precipitation_data}
 # combining precipitation datasets and converting month to a character variable
 precipitation_df =
   bind_rows(precipitation_2018_df, precipitation_2019_df) %>% 
   mutate(month = month.name[month])
-  
 ```
+
+### Data summary 
+
+```{r}
+names_p18 = precipitation_2018_df %>% names()
+precipitation_18_total = precipitation_2018_df %>% summarise(sum(total))
+p18_median = precipitation_2018_df %>% summarise(median(total))
+p18_row = precipitation_2018_df %>% nrow()
+p18_col = precipitation_2018_df %>% ncol()
+
+names_p19 = precipitation_2019_df %>% names()
+precipitation_19_total = precipitation_2019_df %>% summarise(sum(total))
+p19_median = precipitation_2019_df %>% summarise(median(total))
+p19_row =  precipitation_2019_df %>% nrow()
+p19_col = precipitation_2019_df %>% ncol()
+```
+
+* The variable names in the precipitation 2018 dataset are: `r names_p18`. 
+* The total precipitation in 2018 was `r precipitation_18_total`.
+* The median precipitation in 2018 was `r precipitation_19_total`.
+* The number of rows in the precipitation 2018 dataset is `r p18_row`. 
+* The number of columns in the precipitation 2018 dataset `r p18_col`. 
+
+* The variable names in the precipitation 2019 dataset are: `r names_p19`. 
+* The total precipitation in 2019 was `r precipitation_19_total`. 
+* The median precipitation in 2019 was  `r p19_median`.
+* The number of rows in the precipitation 2019 dataset is `r p19_row`. 
+* The number of columns in the precipitation 2019 dataset is `r p19_col`. 
+
+
+
 
