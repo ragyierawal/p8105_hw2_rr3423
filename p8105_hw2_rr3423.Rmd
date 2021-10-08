@@ -108,7 +108,8 @@ pols_month_df =
   mutate(month = month.name[month]) %>% 
   mutate(president = case_when(prez_dem == 1 ~ "dem",
                                prez_gop == 1 ~ "gop",
-                               prez_gop == 2 ~ "gop"))
+                               prez_gop == 2 ~ "gop")) %>% 
+  select(-prez_dem, -prez_gop, -day)
 ```
 
 
