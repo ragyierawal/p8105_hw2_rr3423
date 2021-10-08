@@ -65,7 +65,7 @@ precipitation_df =
 
 ### Data summary 
 
-```{r}
+```{r data_summary}
 names_p18 = precipitation_2018_df %>% names()
 precipitation_18_total = precipitation_2018_df %>% summarise(sum(total))
 p18_median = precipitation_2018_df %>% summarise(median(total))
@@ -115,7 +115,7 @@ pols_month_df =
 
 ### Cleaning data in snp.csv
 
-```{r}
+```{r clean_snp}
 snp_df = 
   read_csv("data/fivethirtyeight_datasets/snp.csv") %>% 
   janitor::clean_names() %>% 
@@ -129,7 +129,7 @@ snp_df =
 
 ### Tidying data in unemployment.csv
 
-```{r}
+```{r clean_unemployment}
 unemployment_df = 
   read_csv("data/fivethirtyeight_datasets/unemployment.csv") %>% 
   janitor::clean_names() %>% 
@@ -145,6 +145,15 @@ unemployment_df =
                         "oct" = "October", "nov" = "November", "dec" = "December"))
 ```
 
+### Merging pols-month, snp, and unemployment datasets 
+
+```{r merge_datasets}
+merged_df_one = 
+  left_join(pols_month_df, snp_df, by = c("year", "month"))
+
+merged_df_final = 
+  left_join(merged_df_one, unemployment_df, by = c("year", "month"))
+```
 
 
 
