@@ -95,6 +95,7 @@ The **variable names** in the precipitation 2019 data are **`r names_p19`**. The
 
 The **variable names** in the Mr. Trash Wheel data are **`r names_trash`**. The number of **rows** in the Mr. Trash Wheel data is **`r trash_rows`**. The number of **columns** in the Mr. Trash Wheel data is **`r trash_columns`**. The **median number of sports balls** in a dumpster in 2019 is **`r median_sports_balls`**.
 
+
 ## PROBLEM 2 
 
 ### Cleaning data in pols-month.csv
@@ -182,6 +183,17 @@ The pols-month dataset contains data regarding the number of national politician
 The snp dataset contains data regarding the closing values of the S&P stock index on associated dates. The **names of key variables** in the snp dataset are **`r names_snp`**. The **dimension** of the snp dataset are **`r dimension_snp`**. The **range of years** in the snp dataset are **`r range_snp`**. 
 
 The unemployment dataset contains data regarding the percentage of unemployment in months of the associated year. The **names of key variables** in the unemployment dataset are **`r names_unemployment`**. The **dimension** of the umemployment dataset are **`r dimension_unemployment`**. The **range of years** in the unemployment dataset are **`r range_unemployment`**. 
+
+
+## PROBLEM 3 
+
+```{r}
+baby_names_df = 
+  read_csv("data/Popular_Baby_Names.csv")
+```
+
+
+
 
 
 
