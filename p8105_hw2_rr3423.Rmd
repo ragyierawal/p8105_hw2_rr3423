@@ -45,6 +45,7 @@ Precipitation Data 2019:
 # reading and cleaning precipitation data for 2019 
 precipitation_2019_df = 
   read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
-             sheet = "2019 Precipitation")
+             sheet = "2019 Precipitation",
+             range = "A1:B8")
 ```
 
