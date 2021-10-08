@@ -239,6 +239,13 @@ male_table_df =
 knitr::kable(male_table_df)
 ```
 
+### Producing a scatterplot for the dataset 
+
+```{r}
+scatterplot_df = 
+  filter(baby_names_df, gender == "Male", ethnicity == "White Non Hispanic", year_of_birth == "2016")
+```
+
 
 
 
