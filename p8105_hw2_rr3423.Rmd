@@ -14,8 +14,10 @@ library(lubridate)
 
 ## PROBLEM 1 
 
-```{r read_data}
-# importing and cleaning excel file data 
+Mr. Trash Wheel:
+
+```{r mr_trash_wheel}
+# importing and cleaning excel file data for Mr. Trash Wheel dataset 
 mr_trash_wheel_df = 
   read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
              sheet = "Mr. Trash Wheel",
@@ -23,7 +25,14 @@ mr_trash_wheel_df =
   janitor::clean_names() %>% 
   filter(!str_detect(month, 'Total')) %>% 
   mutate(sports_balls = round(sports_balls))
+```
 
-view(mr_trash_wheel_df)
+Precipitation Data 2018: 
+
+```{r precipitation_2018}
+# reading and cleaning precipitation data for 2018 
+precipitation_2018_df = 
+  read_excel("data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+             sheet = "2018 Precipitation")
 ```
 
