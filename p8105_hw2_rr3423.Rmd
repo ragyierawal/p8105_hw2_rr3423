@@ -117,8 +117,11 @@ pols_month_df =
 
 ```{r}
 snp_df = 
-  read_csv("data/fivethirtyeight_datasets/snp.csv") 
-
+  read_csv("data/fivethirtyeight_datasets/snp.csv") %>% 
+  janitor::clean_names() %>% 
+  separate(col = date, into = c("month", "day", "year")) %>% 
+  mutate(across(.col = c(month, day, year), as.integer)) %>% 
+  mutate(month = month.name[month])
 ```
 
 
