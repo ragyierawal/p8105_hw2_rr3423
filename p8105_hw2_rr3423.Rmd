@@ -105,7 +105,10 @@ pols_month_df =
   janitor::clean_names() %>% 
   separate(col = mon, into = c("year", "month", "day")) %>%
   mutate(across(.col = c(year, month, day), as.integer)) %>% 
-  mutate(month = month.name[month])
+  mutate(month = month.name[month]) %>% 
+  mutate(president = case_when(prez_dem == 1 ~ "dem",
+                               prez_gop == 1 ~ "gop",
+                               prez_gop == 2 ~ "gop"))
 ```
 
 
