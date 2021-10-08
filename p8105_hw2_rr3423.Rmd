@@ -195,10 +195,11 @@ baby_names_df =
   read_csv("data/Popular_Baby_Names.csv") %>% 
   janitor::clean_names() %>% 
   mutate(gender = str_to_sentence(gender),
-         ethnicity = recode(ethnicity,"ASIAN AND PACI" = "ASIAN AND PACIFIC", 
+         ethnicity = recode(ethnicity,"ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER", 
                             "WHITE NON HISP" = "WHITE NON HISPANIC", 
-                            "BLACK NON HISP" = "BLACK NON HISPANIC"),
-         ethnicity = str_to_sentence(ethnicity),
+                            "BLACK NON HISP" = "BLACK NON HISPANIC",
+                            "ASIAN AND PACIFIC" = "ASIAN AND PACIFIC ISLANDER"),
+         ethnicity = str_to_title(ethnicity),
          childs_first_name = str_to_sentence(childs_first_name))
 ```
 
@@ -208,6 +209,18 @@ baby_names_df =
   baby_names_df %>% distinct()
 ```
 
+### Producing table showing rank in popularity of the name "Olivia" over time 
+
+```{r olivia_table}
+olivia_table_df = 
+  filter(baby_names_df, childs_first_name == "Olivia") %>% 
+  select(-count) %>% 
+  pivot_wider(
+    names_from = "year_of_birth",
+    values_from = "rank"
+  ) %>% 
+  select(childs_first_name, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
+```
 
 
 
