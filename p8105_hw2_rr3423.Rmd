@@ -93,7 +93,12 @@ The **variable names** in the precipitation 2018 data are **`r names_p18`**. The
 
 The **variable names** in the precipitation 2019 data are **`r names_p19`**. The **total precipitation** in 2019 was **`r precipitation_19_total`**. The **median** precipitation in 2019 was **`r p19_median`**. The **mean** precipitation in 2019 was **`r p19_mean`**. The number of **rows** in the precipitation 2019 data is **`r p19_row`**. The number of **columns** in the precipitation 2019 data is **`r p19_col`**.
 
-The **variable names** in the Mr. Trash Wheel data are **`r names_trash`**. The number of **rows** in the Mr. Trash Wheel data is **`r trash_rows`**. The number of **columns** in the Mr. Trash Wheel data is **`r trash_columns`**. The **median number of sports balls** in a dumpster in 2019 is **`r median_sports_balls`**. 
+The **variable names** in the Mr. Trash Wheel data are **`r names_trash`**. The number of **rows** in the Mr. Trash Wheel data is **`r trash_rows`**. The number of **columns** in the Mr. Trash Wheel data is **`r trash_columns`**. The **median number of sports balls** in a dumpster in 2019 is **`r median_sports_balls`**.
+
+## PROBLEM 2 
+
+
+
 
 
 
