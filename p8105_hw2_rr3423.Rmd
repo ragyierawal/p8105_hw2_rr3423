@@ -56,6 +56,8 @@ Combining precipitation datasets:
 ```{r combine_precipitation, message = FALSE, warning = FALSE}
 # combining precipitation datasets and converting month to a character variable
 precipitation_df =
-  bind_rows(precipitation_2018_df, precipitation_2019_df)
+  bind_rows(precipitation_2018_df, precipitation_2019_df) %>% 
+  mutate(month = month.name[month])
+  
 ```
 
