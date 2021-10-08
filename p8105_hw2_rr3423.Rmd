@@ -65,7 +65,7 @@ precipitation_df =
 
 ### Data summary 
 
-```{r data_summary}
+```{r data_summary_1}
 names_p18 = precipitation_2018_df %>% names()
 precipitation_18_total = precipitation_2018_df %>% summarise(sum(total))
 p18_median = precipitation_2018_df %>% summarise(median(total))
@@ -153,6 +153,28 @@ merged_df_one =
 
 merged_df_final = 
   left_join(merged_df_one, unemployment_df, by = c("year", "month"))
+```
+
+### Data summary 
+
+```{r data_summary_2}
+names_pols = pols_month_df %>% names()
+dimension_pols = pols_month_df %>%  dim()
+range_pols = pols_month_df %>% 
+  select(year) %>% 
+  range()
+
+names_snp = snp_df %>% names()
+dimension_snp = snp_df %>% dim()
+range_snp = snp_df %>% 
+  select(year) %>% 
+  range()
+
+names_unemployment = unemployment_df %>% names() 
+dimension_unemployment = unemployment_df %>% dim()
+range_unemployment = unemployment_df %>% 
+  select(year) %>% 
+  range()
 ```
 
 
