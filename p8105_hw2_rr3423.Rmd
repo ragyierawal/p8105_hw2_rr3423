@@ -116,6 +116,8 @@ pols_month_df =
 ### Cleaning data in snp.csv
 
 ```{r}
+snp_df = 
+  read_csv("data/fivethirtyeight_datasets/snp.csv") 
 
 ```
 
