@@ -102,7 +102,9 @@ The **variable names** in the Mr. Trash Wheel data are **`r names_trash`**. The 
 ```{r clean_pols_month}
 pols_month_df = 
   read_csv("data/fivethirtyeight_datasets/pols-month.csv") %>% 
-  janitor::clean_names()
+  janitor::clean_names() %>% 
+  separate(col = mon, into = c("year", "month", "day")) %>%
+  mutate(across(.col = c(year, month, day), as.integer))
 ```
 
 
