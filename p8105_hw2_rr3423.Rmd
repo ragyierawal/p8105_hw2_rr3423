@@ -37,6 +37,9 @@ precipitation_2018_df =
   janitor::clean_names() %>% 
   mutate(year = "2018") %>% 
   drop_na()
+
+# displaying precipitation_2018_df 
+knitr::kable(precipitation_2018_df)
 ```
 
 ### Precipitation Data 2019:
@@ -50,6 +53,9 @@ precipitation_2019_df =
   janitor::clean_names() %>% 
   mutate(year = "2019") %>% 
   drop_na()
+
+# displaying precipitation_2019_df 
+knitr::kable(precipitation_2019_df)
 ```
 
 ### Combining precipitation datasets:
@@ -60,6 +66,9 @@ precipitation_df =
   bind_rows(precipitation_2018_df, precipitation_2019_df) %>% 
   mutate(month = month.name[month]) %>% 
   relocate(month, year, total)
+
+# displaying combined precipitation datasets 
+knitr::kable(precipitation_df)
 ```
 
 ### Data summary 
@@ -230,13 +239,13 @@ baby_names_df =
 
 ```{r olivia_table}
 olivia_table_df = 
-  filter(baby_names_df, childs_first_name == "Olivia") %>% 
-  select(-count) %>% 
+  filter(baby_names_df, childs_first_name == "Olivia", gender == "Female") %>% 
+  select(-count, -childs_first_name, -gender) %>% 
   pivot_wider(
     names_from = "year_of_birth",
     values_from = "rank"
   ) %>% 
-  select(childs_first_name, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
+  select(ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
 
 # displaying table 
 knitr::kable(olivia_table_df)
@@ -247,12 +256,12 @@ knitr::kable(olivia_table_df)
 ```{r male_name_table}
 male_table_df =
   filter(baby_names_df, gender == "Male", rank == "1") %>% 
-  select(-count) %>% 
+  select(-count, -rank, -gender) %>% 
   pivot_wider(
     names_from = "year_of_birth",
     values_from = "childs_first_name"
   ) %>% 
-  select(rank, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
+  select(ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
 
 # displaying table 
 knitr::kable(male_table_df)
