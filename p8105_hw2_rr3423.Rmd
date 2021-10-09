@@ -8,7 +8,6 @@ output: github_document
 ```{r setup, include = FALSE}
 library(tidyverse)
 library(readxl)
-library(lubridate)
 ```
 
 
@@ -66,6 +65,7 @@ precipitation_df =
 ### Data summary 
 
 ```{r data_summary_1}
+# creating variables for variable names, total precipitation, median, mean, row, columns for precipitation 18
 names_p18 = precipitation_2018_df %>% names()
 precipitation_18_total = precipitation_2018_df %>% summarise(sum(total))
 p18_median = precipitation_2018_df %>% summarise(median(total))
@@ -73,6 +73,7 @@ p18_mean = precipitation_2018_df %>% summarise(mean(total))
 p18_row = precipitation_2018_df %>% nrow()
 p18_col = precipitation_2018_df %>% ncol()
 
+# creating variables for variable names, total precipitation, median, mean, row, columns for precipitation 18
 names_p19 = precipitation_2019_df %>% names()
 precipitation_19_total = precipitation_2019_df %>% summarise(sum(total))
 p19_median = precipitation_2019_df %>% summarise(median(total))
@@ -80,10 +81,12 @@ p19_mean = precipitation_2019_df %>% summarise(mean(total))
 p19_row =  precipitation_2019_df %>% nrow()
 p19_col = precipitation_2019_df %>% ncol()
 
+# creating variables for names, rows, and columns for mr. trash wheel dataset 
 names_trash = mr_trash_wheel_df %>% names()
 trash_rows = mr_trash_wheel_df %>% nrow()
 trash_columns = mr_trash_wheel_df %>% ncol()
 
+# finding the median sport balls in 2019 
 median_sports_balls = mr_trash_wheel_df %>% 
   filter(year == 2019) %>% 
   summarise(median(sports_balls))
@@ -100,7 +103,8 @@ The **variable names** in the Mr. Trash Wheel data are **`r names_trash`**. The 
 
 ### Cleaning data in pols-month.csv
 
-```{r clean_pols_month}
+```{r clean_pols_month, message = FALSE, warning = FALSE}
+# importing pols-month dataset, then cleaning the data using separate, mutate, and select functions 
 pols_month_df = 
   read_csv("data/fivethirtyeight_datasets/pols-month.csv") %>% 
   janitor::clean_names() %>% 
@@ -116,7 +120,8 @@ pols_month_df =
 
 ### Cleaning data in snp.csv
 
-```{r clean_snp}
+```{r clean_snp, message = FALSE, warning = FALSE}
+# importing the snp dataset, then cleaning the data using separate, mutate, and select functions 
 snp_df = 
   read_csv("data/fivethirtyeight_datasets/snp.csv") %>% 
   janitor::clean_names() %>% 
@@ -130,7 +135,8 @@ snp_df =
 
 ### Tidying data in unemployment.csv
 
-```{r clean_unemployment}
+```{r clean_unemployment, message = FALSE, warning = FALSE}
+# importing the unemployment dataset, then cleaning and tidying the data using pivot_longer and mutate functions 
 unemployment_df = 
   read_csv("data/fivethirtyeight_datasets/unemployment.csv") %>% 
   janitor::clean_names() %>% 
@@ -149,28 +155,32 @@ unemployment_df =
 ### Merging pols-month, snp, and unemployment datasets 
 
 ```{r merge_datasets}
+# merging the three datasets of interest using left_join two separate times 
 merged_df_one = 
   left_join(pols_month_df, snp_df, by = c("year", "month"))
 
-merged_df_final = 
+merged_538_df = 
   left_join(merged_df_one, unemployment_df, by = c("year", "month"))
 ```
 
 ### Data summary 
 
 ```{r data_summary_2}
+# creating variables for names, dimension, and range of years for pols-month df 
 names_pols = pols_month_df %>% names()
 dimension_pols = pols_month_df %>%  dim()
 range_pols = pols_month_df %>% 
   select(year) %>% 
   range()
 
+# creating variables for names, dimension, and range of years for snp df 
 names_snp = snp_df %>% names()
 dimension_snp = snp_df %>% dim()
 range_snp = snp_df %>% 
   select(year) %>% 
   range()
 
+# creating variables for names, dimension, and range of years for unemployment df 
 names_unemployment = unemployment_df %>% names() 
 dimension_unemployment = unemployment_df %>% dim()
 range_unemployment = unemployment_df %>% 
@@ -189,8 +199,8 @@ The unemployment dataset contains data regarding the percentage of unemployment 
 
 ### Loading and tidying popular baby names data 
 
-```{r formatting_variables}
-# formatting names of categorical predictor and case structure of string variables 
+```{r formatting_variables, message = FALSE, warning = FALSE}
+# formatting names of categorical predictor and case structure of string variables using mutate function
 baby_names_df = 
   read_csv("data/Popular_Baby_Names.csv") %>% 
   janitor::clean_names() %>% 
@@ -203,8 +213,10 @@ baby_names_df =
          childs_first_name = str_to_sentence(childs_first_name))
 ```
 
+### Removing any duplicated rows in this dataset 
+
 ```{r removing_duplicated_rows}
-# removing duplicated rows in popular baby names dataset 
+# removing duplicated rows in popular baby names dataset using distinct function
 baby_names_df = 
   baby_names_df %>% distinct()
 ```
@@ -221,6 +233,7 @@ olivia_table_df =
   ) %>% 
   select(childs_first_name, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
 
+# displaying table 
 knitr::kable(olivia_table_df)
 ```
 
@@ -236,6 +249,7 @@ male_table_df =
   ) %>% 
   select(rank, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
 
+# displaying table 
 knitr::kable(male_table_df)
 ```
 
@@ -250,8 +264,9 @@ scatterplot_df =
 number_scatterplot = 
   ggplot(scatterplot_df, aes(x = rank, y = count)) + 
   geom_point(alpha = 0.3) +
-  ggtitle("Rank in Popularity vs. Count for Names of White Non-Hispanic Males Born in 2016")
+  ggtitle("Rank in Popularity vs. 
+          Count for Names of White Non-Hispanic Males Born in 2016")
 
-# calling scatterplot 
+# displaying scatterplot 
 number_scatterplot 
 ```
